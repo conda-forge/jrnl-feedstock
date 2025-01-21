@@ -1,3 +1,4 @@
+{% set python_min = '3.10.0' %}
 {% set name = "jrnl" %}
 {% set version = "4.2" %}
 
@@ -6,7 +7,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jrnl-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/jrnl-{{ version }}.tar.gz
   sha256: 68af0347cd7097a6af1b9cf375251df0db67e90b296fd8ef68cdbf12046cc6c7
 
 build:
@@ -14,15 +15,15 @@ build:
     - jrnl = jrnl.main:run
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.10,<3.13
+    - python {{ python_min }}
     - poetry-core >=1.0.0
     - pip
   run:
-    - python >=3.10.0,<3.13
+    - python >={{ python_min }},<3.13
     - colorama >=0.4
     - cryptography >=3.0
     - keyring >=21.0
@@ -41,6 +42,7 @@ test:
     - jrnl --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://jrnl.sh
