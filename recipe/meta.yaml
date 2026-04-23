@@ -1,6 +1,6 @@
-{% set python_min = '3.10.0' %}
+{% set python_min = "3.10.0" %}
 {% set name = "jrnl" %}
-{% set version = "4.2" %}
+{% set version = "4.3" %}
 
 package:
   name: {{ name|lower }}
@@ -8,14 +8,14 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/jrnl-{{ version }}.tar.gz
-  sha256: 68af0347cd7097a6af1b9cf375251df0db67e90b296fd8ef68cdbf12046cc6c7
+  sha256: 19ee865bf289b12bf412723874bd5876e25c2b6fbef7a226ea975fa3fcf0920f
 
 build:
   entry_points:
     - jrnl = jrnl.main:run
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
